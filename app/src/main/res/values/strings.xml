@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">bottom_navigation_demo_kotlin</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    <string name="action_settings">Settings</string>
+
+    <string name="app_bar_tab_1_title">TAB 1</string>
+    <string name="app_bar_tab_2_title">TAB 2</string>
+    <string name="app_bar_tab_3_title">TAB 3</string>
+</resources>
