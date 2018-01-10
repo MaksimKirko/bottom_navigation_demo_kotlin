@@ -4,16 +4,16 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.github.maksimkirko.bottom_navigation_layout_demo.MainActivity">
+    tools:context="com.github.maksimkirko.bottom_navigation_demo_kotlin.MainActivity">
 
     <android.support.design.widget.AppBarLayout
-        android:id="@+id/app_bar_main"
+        android:id="@+id/appBarLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:theme="@style/AppTheme.AppBarOverlay">
 
         <android.support.v7.widget.Toolbar
-            android:id="@+id/toolbar_main"
+            android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
             android:background="?attr/colorPrimary"
@@ -21,7 +21,7 @@
             app:popupTheme="@style/AppTheme.PopupOverlay" />
 
         <android.support.design.widget.TabLayout
-            android:id="@+id/tab_layout_main"
+            android:id="@+id/tabLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:windowActionBarOverlay="true"
@@ -48,17 +48,18 @@
     </android.support.design.widget.AppBarLayout>
 
     <FrameLayout
-        android:id="@+id/layout_activity_main_fragment_container"
+        android:id="@+id/fragmentContainer"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:paddingBottom="@dimen/bottom_navigation_height"
         app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
     </FrameLayout>
 
     <com.ittianyu.bottomnavigationviewex.BottomNavigationViewEx
-        android:id="@+id/bottom_navigation_view_main"
+        android:id="@+id/bottomNavigationView"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="@dimen/bottom_navigation_height"
         android:layout_gravity="bottom"
         android:background="@color/primaryColor"
         app:itemIconTint="@drawable/nav_item_color_state"

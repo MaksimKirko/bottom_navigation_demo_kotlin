@@ -2,26 +2,25 @@ package com.github.maksimkirko.bottom_navigation_demo_kotlin
 
 import android.app.Fragment
 import android.os.Bundle
-import android.support.design.widget.AppBarLayout
+import android.support.design.widget.CoordinatorLayout
 import android.support.design.widget.NavigationView
-import android.support.design.widget.TabLayout
 import android.support.v4.view.GravityCompat
 import android.support.v4.widget.DrawerLayout
 import android.support.v7.app.ActionBarDrawerToggle
 import android.support.v7.app.AppCompatActivity
-import android.support.v7.widget.Toolbar
+import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
+import android.widget.FrameLayout
+import android.widget.LinearLayout
 import com.github.maksimkirko.bottom_navigation_demo_kotlin.fragment.*
-import com.ittianyu.bottomnavigationviewex.BottomNavigationViewEx
+import kotlinx.android.synthetic.main.app_bar_main.*
+import com.github.maksimkirko.bottom_navigation_demo_kotlin.R.id.bottomNavigationView
+
 
 class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
 
-    private lateinit var appBarLayout: AppBarLayout
-    private lateinit var toolbar: Toolbar
-    private lateinit var tabLayout: TabLayout
-    private lateinit var bottomNavigationView: BottomNavigationViewEx
     private var selectedFragment: Fragment? = null
 
     private var isAppBarLayoutExpanded = true
@@ -33,14 +32,12 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
         initAppBarLayout()
         initToolbar()
-        initTabLayout()
         initNavigationDrawer()
         initBottomNavigationView()
+//        setFragmentContainerMargin()
     }
 
     private fun initAppBarLayout() {
-        appBarLayout = findViewById(R.id.app_bar_main)
-
         appBarLayout.addOnOffsetChangedListener { appBarLayout, verticalOffset ->
             if (isHomeFragment) {
                 isAppBarLayoutExpanded = verticalOffset == 0
@@ -49,12 +46,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     }
 
     private fun initToolbar() {
-        toolbar = findViewById(R.id.toolbar_main)
         setSupportActionBar(toolbar)
-    }
-
-    private fun initTabLayout() {
-        tabLayout = findViewById(R.id.tab_layout_main)
     }
 
     private fun initNavigationDrawer() {
@@ -70,7 +62,6 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     }
 
     private fun initBottomNavigationView() {
-        bottomNavigationView = findViewById(R.id.bottom_navigation_view_main)
         bottomNavigationView.setTextVisibility(false)
         bottomNavigationView.enableAnimation(false)
         bottomNavigationView.enableShiftingMode(false)
@@ -83,7 +74,18 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             selectScreen(item)
             false
         }
+    }
 
+    private fun setFragmentContainerMargin() {
+        val layoutParams = LinearLayout.LayoutParams(
+                LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.MATCH_PARENT)
+
+        val resourceId = resources.getIdentifier("navigation_bar_height", "dimen", "android")
+        resources.getDimensionPixelSize(resourceId)
+
+        layoutParams.setMargins(0, 0, 0, bottomNavigationView.height)
+
+        fragmentContainer.layoutParams = layoutParams
     }
 
     private fun selectScreen(item: MenuItem) {
@@ -129,7 +131,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                 if (selectedFragment != null) {
                     ft.remove(selectedFragment)
                 }
-                ft.add(R.id.layout_activity_main_fragment_container, fragment)
+                ft.add(R.id.fragmentContainer, fragment)
                 ft.commit()
             }
         }

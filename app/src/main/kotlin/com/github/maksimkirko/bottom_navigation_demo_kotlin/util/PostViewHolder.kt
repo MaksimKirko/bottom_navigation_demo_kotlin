@@ -7,7 +7,7 @@ import com.github.maksimkirko.bottom_navigation_demo_kotlin.R
 
 class PostViewHolder(itemView: View?) : RecyclerView.ViewHolder(itemView) {
 
-    private var textView: TextView? = null
+    private lateinit var textView: TextView
 
     fun onBind(text: String) {
         textView!!.text = text

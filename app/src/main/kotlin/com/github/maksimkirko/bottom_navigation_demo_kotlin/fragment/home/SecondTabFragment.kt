@@ -1,6 +1,7 @@
 package com.github.maksimkirko.bottom_navigation_demo_kotlin.fragment.home
 
 import android.support.v7.widget.LinearLayoutManager
+import kotlinx.android.synthetic.main.fragment_tab.*
 
 class SecondTabFragment : TabFragment() {
 
